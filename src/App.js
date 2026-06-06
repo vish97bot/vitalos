@@ -208,7 +208,7 @@ const CorrelationsTab=({data})=>{
     return data.slice(0,end).map((d,i)=>({x:d[xk],y:data[i+lag][yk],date:d.displayDate||d.date})).filter(p=>p.x!=null&&p.y!=null&&!isNaN(p.x)&&!isNaN(p.y));
   },[data,xk,yk,lag]);
   const{r,n}=useMemo(()=>pearson(scatter.map(p=>p.x),scatter.map(p=>p.y)),[scatter]);
-  const{text,color,pct}=rLabel(r);
+  const{text,color}=rLabel(r);
   const regLine=useMemo(()=>{
     if(scatter.length<3)return[];
     const{slope,intercept}=linReg(scatter);
